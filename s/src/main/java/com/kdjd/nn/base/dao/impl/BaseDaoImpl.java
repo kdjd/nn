@@ -9,12 +9,10 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
-import org.springframework.stereotype.Repository;
 
 import com.kdjd.nn.base.dao.BaseDao;
 import com.kdjd.nn.base.entity.BaseEntity;
 
-@Repository
 public class BaseDaoImpl implements BaseDao {
 
 	@Autowired

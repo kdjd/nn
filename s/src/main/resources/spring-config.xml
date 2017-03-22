@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
@@ -11,22 +12,36 @@
 	<!-- don't handle the static resource -->
 	<mvc:default-servlet-handler />
 
+	<!-- 最重要:::如果放在spring-context.xml中，这里的aop设置将不会生效 -->
+	<aop:aspectj-autoproxy />
+
 	<!-- if you use annotation you must configure following setting -->
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageCOnverter的默认编码设为UTF-8 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+				<!-- 去掉response中的Accept-Charset -->
+				<property name="writeAcceptCharset" value="false" />
+			</bean>
 			<bean
-				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-				<property name="supportedMediaTypes" value="application/json" />
-				<!--设置fastjson特性 -->
-				<property name="features">
-					<array>
-						<!--设置null值也要输出，fastjson默认是关闭的 -->
-						<value>WriteMapNullValue</value>
-						<!--设置使用文本方式输出日期，fastjson默认是long -->
-						<value>WriteDateUseDateFormat</value>
-					</array>
+				class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4">
+				<property name="fastJsonConfig">
+					<bean class="com.alibaba.fastjson.support.config.FastJsonConfig">
+						<property name="serializerFeatures">
+							<array value-type="com.alibaba.fastjson.serializer.SerializerFeature">
+								<!--<value>PrettyFormat</value> -->
+								<value>WriteDateUseDateFormat</value>
+								<value>WriteMapNullValue</value>
+								<value>WriteNullStringAsEmpty</value>
+								<value>WriteNullNumberAsZero</value>
+								<value>WriteNullBooleanAsFalse</value>
+							</array>
+						</property>
+					</bean>
 				</property>
 			</bean>
+
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 

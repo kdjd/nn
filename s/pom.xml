@@ -6,17 +6,38 @@
 	<version>v1.0</version>
 	<packaging>war</packaging>
 
+	<properties>
+		<springframework.version>4.3.7.RELEASE</springframework.version>
+		<aspect>1.8.10</aspect>
+	</properties>
+
 	<dependencies>
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.6.RELEASE</version>
+			<version>${springframework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-			<version>4.3.6.RELEASE</version>
+			<version>${springframework.version}</version>
+		</dependency>
+		<!-- aop -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${springframework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${aspect}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+			<version>${aspect}</version>
 		</dependency>
 		<!-- boot -->
 		<dependency>
@@ -51,6 +72,12 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>1.2.28.odps</version>
+		</dependency>
+		<!-- servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>4.0.0-b03</version>
 		</dependency>
 		<!-- log -->
 		<!-- <dependency> -->

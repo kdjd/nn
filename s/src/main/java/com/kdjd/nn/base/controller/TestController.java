@@ -1,6 +1,7 @@
-package com.kdjd.nn.base;
+package com.kdjd.nn.base.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.kdjd.nn.base.aop.annotation.Tailor;
+import com.kdjd.nn.base.aop.annotation.Tailors;
 import com.kdjd.nn.base.entity.Result;
 import com.kdjd.nn.base.entity.User;
 import com.kdjd.nn.base.service.UserService;
@@ -28,12 +31,11 @@ public class TestController {
 	protected static Log log = LogFactory.getLog(TestController.class);
 
 	@RequestMapping(value = "/")
+	@Tailors(tailors = { @Tailor(properties = { "password" }, target = User.class) })
 	public Object main() {
 		log.info("request at " + new Date());
-		User user = new User();
-		user.setCreatedAt(new Date());
-		user.setDescription("detat");
-		return Result.successResult(user, "获取成功");
+		List<User> users = userService.findAll(User.class);
+		return Result.successResult(users, "获取成功");
 	}
 
 	@RequestMapping(value = "/login")
