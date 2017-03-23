@@ -39,7 +39,7 @@ public class BaseServiceImpl implements BaseService {
 
 	@Override
 	public <T extends BaseEntity> T findAndModify(Query query, Update update, Class<T> entityClass) {
-		return findAndModify(query, update, entityClass);
+		return dao.findAndModify(query, update, entityClass);
 	}
 
 	@Override

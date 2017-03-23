@@ -17,17 +17,17 @@
         <div id="container_demo">
             <div id="wrapper">
                 <div id="login" class="animate form">
-                    <form>
+                    <form id="form">
                         <h1>登 录</h1>
                         <p>
-                            <label for="username" class="uname"> 您的用户名或邮箱 </label>
-                            <input id="username" name="username" required="required" type="text"
-                                   placeholder="用户名或邮箱"/>
+                            <label for="name"> 您的用户名或邮箱 </label>
+                            <input id="name" name="name" type="text" placeholder="用户名或邮箱"/>
+                            <label id="noUser" class="login-info" style="display: none;">用户名或邮箱不存在,请重试</label>
                         </p>
                         <p>
-                            <label for="password" class="youpasswd"> 您的密码 </label>
-                            <input id="password" name="password" required="required" type="password"
-                                   placeholder="密码"/>
+                            <label for="password"> 您的密码 </label>
+                            <input id="password" name="password" type="password" placeholder="密码"/>
+                            <label id="wrongPassword" class="login-info" style="display: none;">密码有误，请重试</label>
                         </p>
                         <p class="keeplogin">
                             <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping"/>

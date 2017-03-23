@@ -18,6 +18,18 @@ define([], function () {
             }).done(done);
         },
 
+        login: function (login, password, done) {
+            $.ajax({
+                type: "POST",
+                url: basePath + userPath + "/login",
+                data: {
+                    login: login,
+                    password: password
+                },
+                dataType: "json"
+            }).done(done);
+        },
+
         getinfo: function (success) {
             $.ajax({
                 type: "GET",

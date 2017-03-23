@@ -27,8 +27,6 @@ define(['service/user'], function (service) {
                     window.location = "../main/main.html";
                 }
             });
-
-            console.log(user);
         },
         rules: {
             name: {
