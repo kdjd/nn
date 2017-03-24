@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kdjd.nn.base.aop.annotation.Tailor;
@@ -63,10 +61,4 @@ public class TestController {
 		}
 	}
 
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public Object register(@RequestBody User user) {
-		user = userService.register(user);
-
-		return Result.successResult(user, "新建用户成功");
-	}
 }

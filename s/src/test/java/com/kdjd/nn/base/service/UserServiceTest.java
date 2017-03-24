@@ -41,27 +41,27 @@ public class UserServiceTest extends BaseTestCase {
 	public void testLogin() {
 		LoginInfo info = service.login("kdjd", "123456");
 		assertEquals(info.getResult(), LoginResult.success);
-		assertEquals(info.getUserId(), user.getId());
+		assertEquals(info.getUser().getId(), user.getId());
 
 		info = service.login("kdjd3", "123456");
 		assertEquals(info.getResult(), LoginResult.noUser);
-		assertEquals(info.getUserId(), null);
+		assertEquals(info.getUser(), null);
 
 		info = service.login("abc@qq.com", "123456");
 		assertEquals(info.getResult(), LoginResult.success);
-		assertEquals(info.getUserId(), user.getId());
+		assertEquals(info.getUser().getId(), user.getId());
 
 		info = service.login("abcd@qq.com", "123456");
 		assertEquals(info.getResult(), LoginResult.noUser);
-		assertEquals(info.getUserId(), null);
+		assertEquals(info.getUser(), null);
 
 		info = service.login("abc@qq.com", "1234567");
 		assertEquals(info.getResult(), LoginResult.wrongPassword);
-		assertEquals(info.getUserId(), null);
+		assertEquals(info.getUser(), null);
 
 		info = service.login("kdjd", "1234567");
 		assertEquals(info.getResult(), LoginResult.wrongPassword);
-		assertEquals(info.getUserId(), null);
+		assertEquals(info.getUser(), null);
 
 	}
 

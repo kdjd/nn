@@ -37,7 +37,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		}
 		User user = users.get(0);
 		if (user.getPassword().equals(MD5.md5(password))) {
-			return new LoginInfo(user.getId());
+			return new LoginInfo(user);
 		} else {
 			return new LoginInfo(false, LoginResult.wrongPassword);
 		}

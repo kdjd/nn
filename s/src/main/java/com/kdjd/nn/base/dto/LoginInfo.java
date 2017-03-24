@@ -1,5 +1,7 @@
 package com.kdjd.nn.base.dto;
 
+import com.kdjd.nn.base.entity.User;
+
 public class LoginInfo {
 
 	public enum LoginResult {
@@ -8,7 +10,7 @@ public class LoginInfo {
 
 	private boolean success = true;
 
-	private String userId;
+	private User user;
 
 	private LoginResult result = LoginResult.success;
 
@@ -18,9 +20,9 @@ public class LoginInfo {
 		this.result = r;
 	}
 
-	public LoginInfo(String id) {
+	public LoginInfo(User user) {
 		super();
-		this.userId = id;
+		this.user = user;
 	}
 
 	public boolean isSuccess() {
@@ -31,12 +33,12 @@ public class LoginInfo {
 		this.success = success;
 	}
 
-	public String getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public LoginResult getResult() {
@@ -46,4 +48,5 @@ public class LoginInfo {
 	public void setResult(LoginResult result) {
 		this.result = result;
 	}
+
 }
